@@ -21,9 +21,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.hjq.permissions.IPermissionInterceptor;
 import com.oves.app.R;
 import com.hjq.permissions.OnPermissionCallback;
-import com.hjq.permissions.OnPermissionInterceptor;
 import com.hjq.permissions.OnPermissionPageCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.PermissionFragment;
@@ -39,7 +39,7 @@ import java.util.List;
  *    time   : 2021/01/04
  *    desc   : 权限申请拦截器
  */
-public final class PermissionInterceptor implements OnPermissionInterceptor {
+public final class PermissionInterceptor implements IPermissionInterceptor {
 
     public static final Handler HANDLER = new Handler(Looper.getMainLooper());
 
