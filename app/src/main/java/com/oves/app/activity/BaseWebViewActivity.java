@@ -13,6 +13,7 @@ import static com.oves.app.constants.RetCode.PERMISSION_ERROR;
 import static com.oves.app.constants.RetCode.RUNTIME_EXCEPTION;
 import static com.oves.app.constants.RetCode.USER_CANCELED_OPERATION;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.ComponentName;
 import android.content.ContentValues;
@@ -32,12 +33,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
-import com.example.ota66_sdk2.OTASDKUtils;
-import com.example.ota66_sdk2.firware.UpdateFirewareCallBack;
+import com.hjq.toast.Toaster;
+import com.oves.sdk.ota66.OTASDKUtils;
+import com.oves.sdk.ota66.firware.UpdateFirewareCallBack;
 import com.oves.app.MainActivity;
 import com.oves.app.R;
 import com.oves.app.callback.InitBleDataCallBack;
@@ -73,7 +76,7 @@ import com.google.gson.Gson;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
-import com.hjq.toast.Toaster;
+//import com.hjq.permissions.toast.Toaster;
 import com.huawei.hms.hmsscankit.ScanKitActivity;
 import com.huawei.hms.hmsscankit.ScanUtil;
 import com.huawei.hms.ml.scan.HmsScan;
@@ -275,6 +278,7 @@ public abstract class BaseWebViewActivity extends AppCompatActivity {
         });
 
         bridgeWebView.registerHandler("stopOtaUpgrade", new BridgeHandler() {
+            @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
             @Override
             public void handler(String data, CallBackFunction function) {
                 if (otasdkUtils != null) {
